@@ -23,6 +23,7 @@
          width="200"
          height="150"
          title="Produse">
+</center>
 
 <br>
 
@@ -104,7 +105,6 @@
         <li>Completează formularul</li>
         <li>Selectează categoria</li>
         <li>Apasă Adaugă</li>
-</ol>
     </ol>
 </div>
 
@@ -133,20 +133,25 @@
 <div style="height:50px; background-color:#ccc;">
     <span>Exemplu span într-un div</span>
 </div>
+
+<!-- 🔥 JAVASCRIPT (LA FINAL) -->
 <script>
-<script>
+// 2a. Variabile
 var numeMagazin = "SuperMarket";
 let numarProduse = 3;
 const versiune = "1.0";
 
+// Afișare
 alert("Magazin: " + numeMagazin);
 console.log("Număr produse: " + numarProduse);
 
+// Afișare pe pagină (fără să strice layout-ul)
 let p = document.createElement("p");
 p.innerText = "Versiune aplicație: " + versiune;
 document.body.appendChild(p);
 
-// funcții
+// 2b. Funcții
+
 function calculeazaTotal(pret, cantitate) {
     return pret * cantitate;
 }
@@ -159,12 +164,14 @@ const formatPret = (suma) => {
     return suma.toFixed(2) + " RON";
 };
 
-// apeluri
+// 2c. Apeluri
+
 let total = calculeazaTotal(25.5, 3);
 let totalDiscount = aplicaDiscount(total, 10);
 let rezultatFinal = formatPret(totalDiscount);
 
 console.log("Rezultat final: " + rezultatFinal);
+
 </script>
 
 </body>
