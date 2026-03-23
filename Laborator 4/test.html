@@ -134,9 +134,12 @@
     <span>Exemplu span într-un div</span>
 </div>
 
-<!-- 🔥 JAVASCRIPT (LA FINAL) -->
+<!-- 🔥 JAVASCRIPT LA FINAL (FOARTE IMPORTANT) -->
 <script>
-// 2a. Variabile
+
+// ================= EX 2 =================
+
+// Variabile
 var numeMagazin = "SuperMarket";
 let numarProduse = 3;
 const versiune = "1.0";
@@ -145,13 +148,12 @@ const versiune = "1.0";
 alert("Magazin: " + numeMagazin);
 console.log("Număr produse: " + numarProduse);
 
-// Afișare pe pagină (fără să strice layout-ul)
+// Afișare pe pagină (fără bug)
 let p = document.createElement("p");
 p.innerText = "Versiune aplicație: " + versiune;
 document.body.appendChild(p);
 
-// 2b. Funcții
-
+// Funcții
 function calculeazaTotal(pret, cantitate) {
     return pret * cantitate;
 }
@@ -164,8 +166,7 @@ const formatPret = (suma) => {
     return suma.toFixed(2) + " RON";
 };
 
-// 2c. Apeluri
-
+// Apeluri
 let total = calculeazaTotal(25.5, 3);
 let totalDiscount = aplicaDiscount(total, 10);
 let rezultatFinal = formatPret(totalDiscount);
@@ -173,6 +174,9 @@ let rezultatFinal = formatPret(totalDiscount);
 console.log("Rezultat final: " + rezultatFinal);
 
 
+// ================= EX 3 =================
+
+// Array
 let produse = [
     { nume: "Mere", pret: 5, cantitate: 4, categorie: "Fructe" },
     { nume: "Lapte", pret: 6, cantitate: 2, categorie: "Băuturi" },
@@ -190,9 +194,7 @@ produse.forEach(p => {
 let totaluri = produse.map(p => p.pret * p.cantitate);
 console.log("Totaluri produse:", totaluri);
 
-
-
-
+// Object
 var magazin = {
     nume: "SuperMarket",
     adresa: "Strada Exemplu 1",
@@ -217,14 +219,12 @@ var magazin = {
     }
 };
 
-
-
-
+// Testare
 magazin.afiseazaProduse();
 
 let totalMagazin = magazin.calculeazaValoareTotala();
 
-
+// Afișare pe pagină (corect)
 let p2 = document.createElement("p");
 p2.innerText = "Total magazin: " + totalMagazin + " RON";
 document.body.appendChild(p2);
@@ -238,5 +238,6 @@ if (!produsInexistent) {
 }
 
 </script>
+
 </body>
 </html>
