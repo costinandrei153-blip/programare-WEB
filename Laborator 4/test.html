@@ -142,7 +142,9 @@ const versiune = "1.0";
 // Afișare
 alert("Magazin: " + numeMagazin);
 console.log("Număr produse: " + numarProduse);
-document.write("Versiune aplicație: " + versiune + "<br>");
+let p = document.createElement("p");
+p.innerText = "Versiune aplicație: " + versiune;
+document.body.appendChild(p);
 
 // 2b. Funcții
 
