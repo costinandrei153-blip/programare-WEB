@@ -173,8 +173,6 @@ let rezultatFinal = formatPret(totalDiscount);
 console.log("Rezultat final: " + rezultatFinal);
 
 
-// ================= 3a. ARRAY =================
-
 let produse = [
     { nume: "Mere", pret: 5, cantitate: 4, categorie: "Fructe" },
     { nume: "Lapte", pret: 6, cantitate: 2, categorie: "Băuturi" },
@@ -188,12 +186,12 @@ produse.forEach(p => {
     console.log("Produs:", p.nume, "| Preț:", p.pret, "| Cantitate:", p.cantitate);
 });
 
-// map (total per produs)
+// map
 let totaluri = produse.map(p => p.pret * p.cantitate);
 console.log("Totaluri produse:", totaluri);
 
 
-// ================= 3b. OBJECT =================
+
 
 var magazin = {
     nume: "SuperMarket",
@@ -220,20 +218,20 @@ var magazin = {
 };
 
 
-// ================= 3c. TESTARE =================
 
-// afișare produse
+
 magazin.afiseazaProduse();
 
-// total în pagină
 let totalMagazin = magazin.calculeazaValoareTotala();
-document.write("<br>Total magazin: " + totalMagazin + " RON");
 
-// căutare produs existent
+
+let p2 = document.createElement("p");
+p2.innerText = "Total magazin: " + totalMagazin + " RON";
+document.body.appendChild(p2);
+
 let produsGasit = magazin.gasesteProdus("Mere");
 console.log("Produs găsit:", produsGasit);
 
-// produs inexistent
 let produsInexistent = magazin.gasesteProdus("Apa");
 if (!produsInexistent) {
     console.log("Produsul nu există!");
