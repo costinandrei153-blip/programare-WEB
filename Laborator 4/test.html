@@ -172,7 +172,73 @@ let rezultatFinal = formatPret(totalDiscount);
 
 console.log("Rezultat final: " + rezultatFinal);
 
-</script>
 
+// ================= 3a. ARRAY =================
+
+let produse = [
+    { nume: "Mere", pret: 5, cantitate: 4, categorie: "Fructe" },
+    { nume: "Lapte", pret: 6, cantitate: 2, categorie: "Băuturi" },
+    { nume: "Paine", pret: 3, cantitate: 3, categorie: "Alimente" },
+    { nume: "Ciocolata", pret: 7, cantitate: 5, categorie: "Dulciuri" },
+    { nume: "Banane", pret: 4, cantitate: 6, categorie: "Fructe" }
+];
+
+// forEach
+produse.forEach(p => {
+    console.log("Produs:", p.nume, "| Preț:", p.pret, "| Cantitate:", p.cantitate);
+});
+
+// map (total per produs)
+let totaluri = produse.map(p => p.pret * p.cantitate);
+console.log("Totaluri produse:", totaluri);
+
+
+// ================= 3b. OBJECT =================
+
+var magazin = {
+    nume: "SuperMarket",
+    adresa: "Strada Exemplu 1",
+    produse: produse,
+
+    afiseazaProduse: function() {
+        this.produse.forEach(p => {
+            console.log(p.nume + " - " + p.pret + " x " + p.cantitate);
+        });
+    },
+
+    calculeazaValoareTotala: function() {
+        let total = 0;
+        this.produse.forEach(p => {
+            total += p.pret * p.cantitate;
+        });
+        return total;
+    },
+
+    gasesteProdus: function(numeProdus) {
+        return this.produse.find(p => p.nume === numeProdus);
+    }
+};
+
+
+// ================= 3c. TESTARE =================
+
+// afișare produse
+magazin.afiseazaProduse();
+
+// total în pagină
+let totalMagazin = magazin.calculeazaValoareTotala();
+document.write("<br>Total magazin: " + totalMagazin + " RON");
+
+// căutare produs existent
+let produsGasit = magazin.gasesteProdus("Mere");
+console.log("Produs găsit:", produsGasit);
+
+// produs inexistent
+let produsInexistent = magazin.gasesteProdus("Apa");
+if (!produsInexistent) {
+    console.log("Produsul nu există!");
+}
+
+</script>
 </body>
 </html>
