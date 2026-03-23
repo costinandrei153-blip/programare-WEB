@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de cumpărături</title>
+</head>
 
+<body bgcolor="#f2f2f2">
+
+<center>
+    <h1>Aplicație Listă de Cumpărături</h1>
+    <h2>Gestionează rapid produsele tale</h2>
+</center>
+
+<p>
+    <strong>Instrucțiuni:</strong> Adaugă produse în listă folosind formularul de mai jos. 
+    <b>Selectează categoria</b> și completează detaliile necesare.
+</p>
+
+<center>
+    <img src="https://via.placeholder.com/200"
+         alt="Imagine produse"
+         width="200"
+         height="150"
+         title="Produse">
+</center>
+
+<br>
+
+<!-- FORMULAR -->
+<fieldset>
+    <legend>Adăugare produs</legend>
+
+    Nume produs:
+    <input type="text" name="produs" maxlength="20" size="20" value="Ex: Mere">
+    <br><br>
+
+    Cantitate:
+    <input type="number" max="100" step="1">
+    <br><br>
+
+    Categorie:
+    <select multiple>
+        <option selected>Fructe</option>
+        <option>Legume</option>
+        <option>Băuturi</option>
+        <option>Dulciuri</option>
+    </select>
+    <br><br>
+
+    Proprietăți:
+    <input type="checkbox" checked> Bio
+    <input type="checkbox"> Promoție
+    <input type="checkbox" disabled> Expirat
+    <br><br>
+
+    Observații:
+    <br>
+    <textarea cols="30" rows="3" readonly>Nu sunt observații</textarea>
+    <br><br>
+
+    <input type="submit" value="Adaugă">
+    <input type="reset" value="Reset">
+</fieldset>
+
+<br>
+
+<!-- TABEL -->
+<table border="1" width="50%" align="center">
+    <tr bgcolor="#cccccc">
+        <th>Produs</th>
+        <th>Cantitate</th>
+        <th>Categorie</th>
+    </tr>
+
+    <tr>
+        <td align="center">Mere</td>
+        <td align="center">5</td>
+        <td align="center">Fructe</td>
+    </tr>
+
+    <tr>
+        <td align="center">Lapte</td>
+        <td align="center">2</td>
+        <td align="center">Băuturi</td>
+    </tr>
+
+    <tr>
+        <td align="center">Ciocolată</td>
+        <td align="center">3</td>
+        <td align="center">Dulciuri</td>
+    </tr>
+
+    <tr bgcolor="#dddddd">
+        <td colspan="3" align="center">Total produse: 3</td>
+    </tr>
+</table>
+
+<br>
+
+<!-- LISTE -->
+<div>
+    <h3>Pași de utilizare:</h3>
+    <ol start="1">
+        <li>Completează formularul</li>
+        <li>Selectează categoria</li>
+        <li>Apasă Adaugă</li>
+    </ol>
+</div>
+
+<div>
+    <h3>Categorii:</h3>
+    <ul>
+        <li>Fructe</li>
+        <li>Legume</li>
+        <li>Băuturi</li>
+        <li>Dulciuri</li>
+    </ul>
+</div>
+
+<br>
+
+<!-- LINKURI -->
+<div>
+    <a href="https://google.com" target="_blank" name="google">Google</a>
+    <br>
+    <a href="https://youtube.com" target="_blank" name="youtube">YouTube</a>
+</div>
+
+<br>
+
+<!-- SPAN + HEIGHT -->
+<div style="height:50px; background-color:#ccc;">
+    <span>Exemplu span într-un div</span>
+</div>
+
+</body>
+</html>
