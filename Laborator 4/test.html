@@ -134,44 +134,38 @@
     <span>Exemplu span într-un div</span>
 </div>
 <script>
-// 2a. Variabile
+<script>
 var numeMagazin = "SuperMarket";
 let numarProduse = 3;
 const versiune = "1.0";
 
-// Afișare
 alert("Magazin: " + numeMagazin);
 console.log("Număr produse: " + numarProduse);
+
 let p = document.createElement("p");
 p.innerText = "Versiune aplicație: " + versiune;
 document.body.appendChild(p);
 
-// 2b. Funcții
-
-// 1. Function declaration
+// funcții
 function calculeazaTotal(pret, cantitate) {
     return pret * cantitate;
 }
 
-// 2. Function expression
 const aplicaDiscount = function(total, procent) {
     return total - (total * procent / 100);
 };
 
-// 3. Arrow function
 const formatPret = (suma) => {
     return suma.toFixed(2) + " RON";
 };
 
-// 2c. Apeluri
-
+// apeluri
 let total = calculeazaTotal(25.5, 3);
 let totalDiscount = aplicaDiscount(total, 10);
 let rezultatFinal = formatPret(totalDiscount);
 
-// Afișare finală
 console.log("Rezultat final: " + rezultatFinal);
-
 </script>
+
 </body>
 </html>
