@@ -1,0 +1,27 @@
+{
+  "name": "tenis-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/costinandrei153-blip/tenis-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/costinandrei153-blip/tenis-app/issues"
+  },
+  "homepage": "https://github.com/costinandrei153-blip/tenis-app#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0"
+  }
+}
