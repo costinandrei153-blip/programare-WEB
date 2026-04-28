@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="container">
+
+<nav>
+<h1>🎾 Tennis Dashboard</h1>
+
+<div>
+<a href="/">Home</a>
+<a href="/logout">Logout</a>
+</div>
+</nav>
+
+<div class="card">
+<h2>Bine ai venit <%= user.email %></h2>
+<p>Vizite sesiune: <%= views %></p>
+<p>Turneu favorit: <%= favorite %></p>
+</div>
+
+<div class="card">
+<h2>Live Matches</h2>
+
+<table>
+<tr>
+<th>Player</th>
+<th>Opponent</th>
+<th>Score</th>
+</tr>
+
+<% matches.forEach(match => { %>
+
+<tr>
+<td><%= match.player1 %></td>
+<td><%= match.player2 %></td>
+<td><%= match.score %></td>
+</tr>
+
+<% }) %>
+
+</table>
+</div>
+
+<div class="card">
+<h2>Top ATP Players</h2>
+
+<p>1. Novak Djokovic</p>
+<p>2. Carlos Alcaraz</p>
+<p>3. Jannik Sinner</p>
+<p>4. Daniil Medvedev</p>
+<p>5. Nicu Tancu</p>
+
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,221 +1,448 @@
 <!DOCTYPE html>
-<html lang="ro">
+
+<html>
+
 <head>
-<meta charset="utf-8"/>
-<title>Async JavaScript Lab</title>
+
+<title title="Tennis Tracker">Tennis Live Match Tracker</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #1e1e2f, #2c3e50);
-    color: white;
+
+body{
+margin:0;
+font-family:Segoe UI;
+background-image:url("https://upload.wikimedia.org/wikipedia/commons/7/7a/Roland_Garros_clay_court.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
 }
 
-h1 {
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    font-weight: 300;
+.overlay{
+background:rgba(0,0,0,0.65);
+min-height:100vh;
 }
 
-#container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
+.header{
+text-align:center;
+padding:70px 20px;
 }
 
-/* CARD */
-.card {
-    background: #2a2a3d;
-    border-radius: 15px;
-    padding: 20px;
-    flex: 1;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+.layout{
+display:flex;
+width:92%;
+margin:auto;
+gap:25px;
 }
 
-/* TEXTAREA */
-textarea {
-    width: 100%;
-    height: 220px;
-    background: #1e1e2f;
-    color: #00ffcc;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    outline: none;
+.sidebar{
+width:22%;
+background:rgba(0,0,0,0.55);
+padding:25px;
+border-radius:12px;
 }
 
-/* BUTTONS */
-button {
-    margin-top: 10px;
-    margin-right: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+.main{
+width:78%;
 }
 
-.run {
-    background: #00c853;
-    color: white;
-}
-.run:hover {
-    background: #00e676;
-}
-
-.clear {
-    background: #d50000;
-    color: white;
-}
-.clear:hover {
-    background: #ff1744;
+.card{
+background:rgba(0,0,0,0.55);
+padding:25px;
+border-radius:12px;
+margin-bottom:25px;
 }
 
-/* CONSOLE */
-#myconsole {
-    background: black;
-    color: #00ff00;
-    font-family: monospace;
-    height: 300px;
-    overflow-y: auto;
-    border-radius: 10px;
-    padding: 10px;
+table{
+width:100%;
+border-collapse:collapse;
 }
 
-/* MENU */
-ul {
-    margin-top: 15px;
-    padding: 0;
+th{
+background:#16a34a;
+padding:12px;
 }
 
-li {
-    list-style: none;
-    margin-bottom: 8px;
+td{
+padding:12px;
+border-bottom:1px solid #374151;
+text-align:center;
 }
 
-a {
-    text-decoration: none;
-    color: #00e5ff;
-    transition: 0.2s;
+.live{
+color:red;
+font-weight:bold;
 }
 
-a:hover {
-    color: #18ffff;
+input,select,textarea{
+padding:8px;
+border-radius:6px;
+border:none;
 }
+
+button{
+background:#16a34a;
+padding:10px 18px;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#22c55e;
+}
+
 </style>
 
 <script>
-let my = {
-    log: function(msg) {
-        document.getElementById("myconsole").innerHTML += "➜ " + msg + "<br>";
-    }
-};
 
-function sterge(){
-    document.getElementById("myconsole").innerHTML = "";
+var seconds=0
+
+function timer(){
+
+seconds++
+document.getElementById("timer").innerHTML=seconds+" sec"
+
 }
 
-function deseneaza(){
-    sterge();
-    let code = document.getElementById("textArea").value;
-    try {
-        eval(code);
-    } catch(e){
-        my.log("Eroare: " + e.message);
-    }
+setInterval(timer,1000)
+
+function addMatch(){
+
+var p=document.getElementById("player").value
+var o=document.getElementById("opponent").value
+
+var table=document.getElementById("matchTable")
+
+var row=table.insertRow()
+
+row.insertCell(0).innerHTML=p
+row.insertCell(1).innerHTML=o
+row.insertCell(2).innerHTML="0"
+row.insertCell(3).innerHTML="0"
+
 }
+
 </script>
 
 </head>
 
-<body>
+<body bgcolor="#0f172a">
 
-<h1>⚡ Async JavaScript Playground</h1>
+<div class="overlay">
 
-<div id="container">
+<div class="header">
 
-    <!-- LEFT -->
-    <div class="card">
-        <textarea id="textArea"></textarea><br/>
-
-        <button class="run" onclick="deseneaza()">▶ RUN</button>
-        <button class="clear" onclick="sterge()">✖ CLEAR</button>
-
-        <ul>
-            <li><a href="javascript:loadex(0)">📘 Ex 1 - sincron</a></li>
-            <li><a href="javascript:loadex(1)">⏳ Ex 2 - asincron</a></li>
-            <li><a href="javascript:loadex(2)">🎨 Ex 3 - setTimeout</a></li>
-            <li><a href="javascript:loadex(3)">🔄 Ex 4 - setInterval</a></li>
-        </ul>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="card">
-        <div id="myconsole">Console ready...</div>
-    </div>
+<h1 align="center">🎾 Tennis Live Match Tracker</h1>
+<h2>Monitorizarea meciurilor de tenis</h2>
+<h3>Platformă demonstrativă</h3>
+<h4>Laborator HTML</h4>
+<h5>Universitate</h5>
+<h6>Aplicație web</h6>
 
 </div>
 
-<script>
-let arrex = [
+<div class="layout">
 
-`let carti = ["Ion", "Morometii", "Baltagul", "Enigma Otiliei", "Maitreyi"];
+<div class="sidebar">
 
-for(let i = 0; i < carti.length; i++){
-    my.log((i+1) + ". " + carti[i]);
-}`,
+<h3>Turnee</h3>
 
-`function ArrayPlusDelay(array, delegate, delay) {
-    array.forEach(function(el, i){
-        setTimeout(function(){
-            delegate(array[i]);
-        }, i * delay);
-    });
-}
+<ul>
 
-let carti = ["Ion", "Morometii", "Baltagul", "Enigma Otiliei", "Maitreyi"];
+<li>ATP Tour</li>
+<li>Wimbledon</li>
+<li>US Open</li>
+<li>Roland Garros</li>
+<li>Australian Open</li>
 
-ArrayPlusDelay(carti, function(el){
-    my.log(el);
-}, 2000);`,
+</ul>
 
-`let box = document.createElement("div");
-box.innerHTML = "Text colorat";
-box.style.border = "2px solid white";
-box.style.padding = "20px";
-box.style.marginTop = "10px";
-box.style.backgroundColor = "red";
-document.body.appendChild(box);
+<h3>Top jucători</h3>
 
-setTimeout(function(){
-    box.style.backgroundColor = "blue";
-}, 3000);`,
+<ul>
 
-`let box = document.createElement("div");
-box.innerHTML = "Schimbare continua";
-box.style.border = "2px solid white";
-box.style.padding = "20px";
-box.style.marginTop = "10px";
-document.body.appendChild(box);
+<li>Djokovic</li>
+<li>Alcaraz</li>
+<li>Sinner</li>
+<li>Medvedev</li>
 
-let colors = ["red", "blue", "green", "yellow"];
-let i = 0;
+</ul>
 
-setInterval(function(){
-    box.style.backgroundColor = colors[i % colors.length];
-    i++;
-}, 5000);`
-];
+<h3>Pași utilizare</h3>
 
-function loadex(nr){
-    document.getElementById("textArea").value = arrex[nr];
-}
-</script>
+<ol start="1">
+
+<li>Vizualizează meciuri</li>
+<li>Adaugă rezultate</li>
+<li>Monitorizează scoruri</li>
+
+</ol>
+
+</div>
+
+<div class="main">
+
+<div class="card">
+
+<p align="center">
+
+<strong>Tennis Live Tracker</strong> este o aplicație web demonstrativă
+care permite utilizatorilor să urmărească meciuri de tenis,
+să vizualizeze scoruri și să introducă rezultate noi.
+
+<br><br>
+
+Aplicația simulează o platformă sportivă inspirată din <b>LiveScore</b> sau <b>FlashScore</b>.
+
+<br>
+
+<span title="informatie">Platformă demonstrativă</span>
+
+</p>
+
+<p align="center">
+
+Match timer: <span id="timer">0 sec</span>
+
+</p>
+
+</div>
+
+<div class="card">
+
+<center>
+
+<h2>Live Matches</h2>
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_Racket_and_Balls.jpg"
+width="350"
+height="200"
+alt="tenis"
+title="tenis">
+
+</center>
+
+<table border="1" width="100%" id="matchTable">
+
+<tr>
+
+<th>Player</th>
+<th>Opponent</th>
+<th colspan="2">Score</th>
+
+</tr>
+
+<tr>
+
+<td align="center" valign="middle">Djokovic <span class="live">LIVE</span></td>
+<td>Alcaraz</td>
+<td>4</td>
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>Sinner</td>
+<td>Medvedev</td>
+<td>2</td>
+<td>2</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2 align="center">Add Match</h2>
+
+<form name="tenisForm">
+
+<fieldset>
+
+<legend>Match Form</legend>
+
+<p>
+
+Player Name
+
+<input
+type="text"
+name="player"
+id="player"
+size="20"
+maxlength="30"
+value="Player name">
+
+</p>
+
+<p>
+
+Opponent
+
+<input
+type="text"
+name="opponent"
+id="opponent"
+size="20"
+maxlength="30">
+
+</p>
+
+<p>
+
+Tournament
+
+<select name="turneu">
+
+<option value="ATP">ATP</option>
+<option value="Wimbledon" selected>Wimbledon</option>
+<option value="US Open">US Open</option>
+
+</select>
+
+</p>
+
+<p>
+
+Surface
+
+<select multiple size="3">
+
+<option>Clay</option>
+<option>Grass</option>
+<option>Hard</option>
+
+</select>
+
+</p>
+
+<p>
+
+Set score
+
+<input
+type="number"
+max="7"
+step="1"
+value="0">
+
+</p>
+
+<p>
+
+Comments
+
+<br>
+
+<textarea
+name="comentarii"
+cols="40"
+rows="4">
+
+Match analysis
+
+</textarea>
+
+</p>
+
+<p>
+
+<input type="checkbox" checked> Match finished
+
+</p>
+
+<p>
+
+<input type="text" value="readonly field" readonly>
+
+</p>
+
+<p>
+
+<input type="text" value="disabled field" disabled>
+
+</p>
+
+<p>
+
+<button type="button" onclick="addMatch()">Add Match</button>
+
+</p>
+
+</fieldset>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2 align="center">ATP Ranking</h2>
+
+<table border="1" width="400">
+
+<tr>
+
+<th>Rank</th>
+<th>Player</th>
+
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td>Novak Djokovic</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td>Carlos Alcaraz</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td>Jannik Sinner</td>
+</tr>
+
+<tr>
+<td align="center">4</td>
+<td>Daniil Medvedev</td>
+</tr>
+
+<tr>
+<td align="center">5</td>
+<td>Stefanos Tsitsipas</td>
+</tr>
+
+</table>
+
+</div>
+
+<center>
+
+<a
+href="https://www.atptour.com"
+target="_blank"
+name="linkATP"
+title="ATP ranking">
+
+Vizitează site-ul oficial ATP
+
+</a>
+
+</center>
+
+</div>
+
+</div>
+
+</div>
 
 </body>
+
 </html>
