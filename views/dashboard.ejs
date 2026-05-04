@@ -1,61 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard</title>
-<link rel="stylesheet" href="/style.css">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
+
+<a href="/add-match">➕ Add Match</a>
 
 <div class="overlay">
 <div class="container">
 
 <nav>
-<h1>🎾 Tennis Dashboard</h1>
+  <h1>🎾 Tennis Dashboard</h1>
 
-<div>
-<a href="/">Home</a>
-<a href="/logout">Logout</a>
-</div>
+  <div>
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+  </div>
 </nav>
 
 <div class="card">
-<h2>Bine ai venit <%= user.email %></h2>
-<p>Vizite sesiune: <%= views %></p>
-<p>Turneu favorit: <%= favorite %></p>
+  <h2>Bine ai venit <%= user.email %></h2>
+  <p>Vizite sesiune: <%= views %></p>
+  <p>Turneu favorit: <%= favorite %></p>
 </div>
 
 <div class="card">
-<h2>Live Matches</h2>
+  <h2>Live Matches</h2>
 
-<table>
-<tr>
-<th>Player</th>
-<th>Opponent</th>
-<th>Score</th>
-</tr>
+  <!-- 🔍 SEARCH -->
+  <form action="/search" method="GET" style="margin-bottom:15px;">
+    <input 
+      type="text" 
+      name="q" 
+      placeholder="Search player..." 
+      style="padding:8px;border-radius:5px;border:none;width:200px;"
+    >
 
-<% matches.forEach(match => { %>
+    <button 
+      type="submit"
+      style="padding:8px 12px;background:#00c853;color:white;border:none;border-radius:5px;"
+    >
+      Search
+    </button>
 
-<tr>
-<td><%= match.player1 %></td>
-<td><%= match.player2 %></td>
-<td><%= match.score %></td>
-</tr>
+    <a href="/dashboard" style="margin-left:10px;color:white;">Reset</a>
+  </form>
 
-<% }) %>
+  <table>
+    <tr>
+      <th>Player</th>
+      <th>Opponent</th>
+      <th>Score</th>
+      <th>Created By</th>
+      <th>Actions</th>
+    </tr>
 
-</table>
+    <% matches.forEach(match => { %>
+    <tr>
+      <td><%= match.player %></td>
+      <td><%= match.opponent %></td>
+      <td><%= match.score %></td>
+      <td><%= match.createdBy ? match.createdBy.email : "N/A" %></td>
+      <td>
+        <a href="/edit-match/<%= match._id %>" 
+           style="margin-right:10px;color:yellow;">
+           Edit
+        </a>
+
+        <form action="/delete-match/<%= match._id %>" method="POST" style="display:inline;">
+          <button style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+            Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+
+  </table>
 </div>
 
 <div class="card">
-<h2>Top ATP Players</h2>
+  <h2>Top ATP Players</h2>
 
-<p>1. Novak Djokovic</p>
-<p>2. Carlos Alcaraz</p>
-<p>3. Jannik Sinner</p>
-<p>4. Daniil Medvedev</p>
-<p>5. Nicu Tancu</p>
+  <p>1. Novak Djokovic</p>
+  <p>2. Carlos Alcaraz</p>
+  <p>3. Jannik Sinner</p>
+  <p>4. Daniil Medvedev</p>
+  <p>5. Nicu Tancu</p>
 
 </div>
 

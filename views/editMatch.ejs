@@ -1,0 +1,9 @@
+<h2>Edit Match</h2>
+
+<form action="/edit-match/<%= match._id %>" method="POST">
+  <input type="text" name="player" value="<%= match.player %>" required>
+  <input type="text" name="opponent" value="<%= match.opponent %>" required>
+  <input type="text" name="score" value="<%= match.score %>" required>
+
+  <button type="submit">Update</button>
+</form>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register</title>
-<link rel="stylesheet" href="/style.css">
+  <title>Register</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
@@ -11,27 +11,45 @@
 <div class="container">
 
 <nav>
-<h1>🎾 Register</h1>
+  <h1>🎾 Register</h1>
 
-<div>
-<a href="/">Home</a>
-<a href="/login">Login</a>
-</div>
+  <div>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+  </div>
 </nav>
 
 <div class="card">
 
-<h2>Creează cont</h2>
+  <h2>Creează cont</h2>
 
-<form method="POST" action="/register">
+  <form method="POST" action="/register">
 
-<input type="text" name="email" placeholder="Email">
+    <!-- 🔥 NOU -->
+    <input 
+      type="text" 
+      name="username" 
+      placeholder="Username"
+      required
+    >
 
-<input type="password" name="password" placeholder="Parolă">
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Email"
+      required
+    >
 
-<button type="submit">Register</button>
+    <input 
+      type="password" 
+      name="password" 
+      placeholder="Parolă (min 6 caractere)"
+      required
+    >
 
-</form>
+    <button type="submit">Register</button>
+
+  </form>
 
 </div>
 

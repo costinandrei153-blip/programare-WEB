@@ -2,9 +2,14 @@ const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const mongoose = require("mongoose");
+const Match = require("./models/Match");
 
+mongoose.connect("mongodb+srv://costin:parola123@cluster0.rh438aw.mongodb.net/tennisApp")
+  .then(() => console.log("MongoDB conectat"))
+  .catch(err => console.log(err));
+  
 const app = express();
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
