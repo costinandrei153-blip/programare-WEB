@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -446,3 +447,453 @@ Vizitează site-ul oficial ATP
 </body>
 
 </html>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title title="Tennis Tracker">Tennis Live Match Tracker</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background-image:url("https://upload.wikimedia.org/wikipedia/commons/7/7a/Roland_Garros_clay_court.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+}
+
+.overlay{
+background:rgba(0,0,0,0.65);
+min-height:100vh;
+}
+
+.header{
+text-align:center;
+padding:70px 20px;
+}
+
+.layout{
+display:flex;
+width:92%;
+margin:auto;
+gap:25px;
+}
+
+.sidebar{
+width:22%;
+background:rgba(0,0,0,0.55);
+padding:25px;
+border-radius:12px;
+}
+
+.main{
+width:78%;
+}
+
+.card{
+background:rgba(0,0,0,0.55);
+padding:25px;
+border-radius:12px;
+margin-bottom:25px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:#16a34a;
+padding:12px;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #374151;
+text-align:center;
+}
+
+.live{
+color:red;
+font-weight:bold;
+}
+
+input,select,textarea{
+padding:8px;
+border-radius:6px;
+border:none;
+}
+
+button{
+background:#16a34a;
+padding:10px 18px;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#22c55e;
+}
+
+</style>
+
+<script>
+
+var seconds=0
+
+function timer(){
+
+seconds++
+document.getElementById("timer").innerHTML=seconds+" sec"
+
+}
+
+setInterval(timer,1000)
+
+function addMatch(){
+
+var p=document.getElementById("player").value
+var o=document.getElementById("opponent").value
+
+var table=document.getElementById("matchTable")
+
+var row=table.insertRow()
+
+row.insertCell(0).innerHTML=p
+row.insertCell(1).innerHTML=o
+row.insertCell(2).innerHTML="0"
+row.insertCell(3).innerHTML="0"
+
+}
+
+</script>
+
+</head>
+
+<body bgcolor="#0f172a">
+
+<div class="overlay">
+
+<div class="header">
+
+<h1 align="center">🎾 Tennis Live Match Tracker</h1>
+<h2>Monitorizarea meciurilor de tenis</h2>
+<h3>Platformă demonstrativă</h3>
+<h4>Laborator HTML</h4>
+<h5>Universitate</h5>
+<h6>Aplicație web</h6>
+
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+
+<h3>Turnee</h3>
+
+<ul>
+
+<li>ATP Tour</li>
+<li>Wimbledon</li>
+<li>US Open</li>
+<li>Roland Garros</li>
+<li>Australian Open</li>
+
+</ul>
+
+<h3>Top jucători</h3>
+
+<ul>
+
+<li>Djokovic</li>
+<li>Alcaraz</li>
+<li>Sinner</li>
+<li>Medvedev</li>
+
+</ul>
+
+<h3>Pași utilizare</h3>
+
+<ol start="1">
+
+<li>Vizualizează meciuri</li>
+<li>Adaugă rezultate</li>
+<li>Monitorizează scoruri</li>
+
+</ol>
+
+</div>
+
+<div class="main">
+
+<div class="card">
+
+<p align="center">
+
+<strong>Tennis Live Tracker</strong> este o aplicație web demonstrativă
+care permite utilizatorilor să urmărească meciuri de tenis,
+să vizualizeze scoruri și să introducă rezultate noi.
+
+<br><br>
+
+Aplicația simulează o platformă sportivă inspirată din <b>LiveScore</b> sau <b>FlashScore</b>.
+
+<br>
+
+<span title="informatie">Platformă demonstrativă</span>
+
+</p>
+
+<p align="center">
+
+Match timer: <span id="timer">0 sec</span>
+
+</p>
+
+</div>
+
+<div class="card">
+
+<center>
+
+<h2>Live Matches</h2>
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tennis_Racket_and_Balls.jpg"
+width="350"
+height="200"
+alt="tenis"
+title="tenis">
+
+</center>
+
+<table border="1" width="100%" id="matchTable">
+
+<tr>
+
+<th>Player</th>
+<th>Opponent</th>
+<th colspan="2">Score</th>
+
+</tr>
+
+<tr>
+
+<td align="center" valign="middle">Djokovic <span class="live">LIVE</span></td>
+<td>Alcaraz</td>
+<td>4</td>
+<td>3</td>
+
+</tr>
+
+<tr>
+
+<td>Sinner</td>
+<td>Medvedev</td>
+<td>2</td>
+<td>2</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="card">
+
+<h2 align="center">Add Match</h2>
+
+<form name="tenisForm">
+
+<fieldset>
+
+<legend>Match Form</legend>
+
+<p>
+
+Player Name
+
+<input
+type="text"
+name="player"
+id="player"
+size="20"
+maxlength="30"
+value="Player name">
+
+</p>
+
+<p>
+
+Opponent
+
+<input
+type="text"
+name="opponent"
+id="opponent"
+size="20"
+maxlength="30">
+
+</p>
+
+<p>
+
+Tournament
+
+<select name="turneu">
+
+<option value="ATP">ATP</option>
+<option value="Wimbledon" selected>Wimbledon</option>
+<option value="US Open">US Open</option>
+
+</select>
+
+</p>
+
+<p>
+
+Surface
+
+<select multiple size="3">
+
+<option>Clay</option>
+<option>Grass</option>
+<option>Hard</option>
+
+</select>
+
+</p>
+
+<p>
+
+Set score
+
+<input
+type="number"
+max="7"
+step="1"
+value="0">
+
+</p>
+
+<p>
+
+Comments
+
+<br>
+
+<textarea
+name="comentarii"
+cols="40"
+rows="4">
+
+Match analysis
+
+</textarea>
+
+</p>
+
+<p>
+
+<input type="checkbox" checked> Match finished
+
+</p>
+
+<p>
+
+<input type="text" value="readonly field" readonly>
+
+</p>
+
+<p>
+
+<input type="text" value="disabled field" disabled>
+
+</p>
+
+<p>
+
+<button type="button" onclick="addMatch()">Add Match</button>
+
+</p>
+
+</fieldset>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2 align="center">ATP Ranking</h2>
+
+<table border="1" width="400">
+
+<tr>
+
+<th>Rank</th>
+<th>Player</th>
+
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td>Novak Djokovic</td>
+</tr>
+
+<tr>
+<td align="center">2</td>
+<td>Carlos Alcaraz</td>
+</tr>
+
+<tr>
+<td align="center">3</td>
+<td>Jannik Sinner</td>
+</tr>
+
+<tr>
+<td align="center">4</td>
+<td>Daniil Medvedev</td>
+</tr>
+
+<tr>
+<td align="center">5</td>
+<td>Stefanos Tsitsipas</td>
+</tr>
+
+</table>
+
+</div>
+
+<center>
+
+<a
+href="https://www.atptour.com"
+target="_blank"
+name="linkATP"
+title="ATP ranking">
+
+Vizitează site-ul oficial ATP
+
+</a>
+
+</center>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+

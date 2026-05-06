@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab7 MongoDB</title>
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+padding:40px;
+}
+table{
+width:100%;
+border-collapse:collapse;
+background:#1e293b;
+}
+th,td{
+padding:12px;
+border:1px solid #334155;
+text-align:center;
+}
+th{
+background:#16a34a;
+}
+</style>
+</head>
+<body>
+
+<h1>Students Database</h1>
+
+<table>
+<tr>
+<th>Week</th>
+<th>Course</th>
+<th>Project</th>
+</tr>
+
+<% courses.forEach(c => { %>
+
+<tr>
+<td><%= c.week %></td>
+<td><%= c.course %></td>
+<td><%= c.project %></td>
+</tr>
+
+<% }) %>
+
+</table>
+
+</body>
+</html>
