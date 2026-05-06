@@ -23,20 +23,33 @@ router.get("/", (req, res) => {
 // REGISTER
 router.post("/register", async (req, res) => {
   try {
+
     const { username, email, password } = req.body;
 
-    await User.create({ username, email, password });
+    const user = await User.create({
+      username,
+      email,
+      password
+    });
 
-    res.redirect("/login");
+    // LOGIN automat
+    req.session.user = user;
+
+    // COOKIE
+    res.cookie("favoriteTournament", "Wimbledon");
+
+    // redirect
+    res.redirect("/dashboard");
 
   } catch (err) {
-    console.log(err); // (vezi eroarea reală)
+
+    console.log(err);
 
     if (err.code === 11000) {
       return res.send("Email sau username deja exista.");
     }
 
-    res.send("Eroare la register");
+    res.send(err.message);
   }
 });
 
@@ -66,6 +79,7 @@ router.post("/login", async (req, res) => {
 
 // DASHBOARD
 router.get("/dashboard", requireLogin, async (req, res) => {
+
     try {
 
         if (!req.session.views) {
@@ -74,20 +88,48 @@ router.get("/dashboard", requireLogin, async (req, res) => {
 
         req.session.views++;
 
+        // MATCHES
         const matches = await Match.find()
-            .sort({ _id: -1 }) //
-            .populate("createdBy", "email");
+            .sort({ _id: -1 })
+            .populate("createdBy", "email username");
+
+        // STATISTICS
+        const totalMatches = await Match.countDocuments();
+
+        const liveMatches = await Match.countDocuments({
+            status: "live"
+        });
+
+        const finishedMatches = await Match.countDocuments({
+            status: "finished"
+        });
 
         res.render("dashboard", {
+
             user: req.session.user,
+
             views: req.session.views,
-            matches: matches,
-            favorite: req.cookies.favoriteTournament
+
+            matches,
+
+            favorite: req.cookies.favoriteTournament,
+
+            totalMatches,
+
+            liveMatches,
+
+            finishedMatches
+
         });
 
     } catch (err) {
+
         console.log(err);
+
+        res.send("Eroare dashboard");
+
     }
+
 });
 
 
@@ -134,6 +176,29 @@ router.get("/logout", (req, res) => {
     });
 });
 
+// MATCH DETAILS
+router.get("/match/:id", requireLogin, async (req, res) => {
+
+  try {
+
+    const match = await Match.findById(req.params.id)
+      .populate("createdBy", "username email");
+
+    if (!match) {
+      return res.send("Match-ul nu exista.");
+    }
+
+    res.render("matchDetails", { match });
+
+  } catch (err) {
+
+    console.log(err);
+    res.send("ID invalid.");
+
+  }
+
+});
+
 
 // EDIT MATCH
 router.get("/edit-match/:id", requireLogin, async (req, res) => {
@@ -144,11 +209,17 @@ router.get("/edit-match/:id", requireLogin, async (req, res) => {
 router.post("/edit-match/:id", requireLogin, async (req, res) => {
   const { player, opponent, score } = req.body;
 
-  await Match.findByIdAndUpdate(req.params.id, {
-    player,
-    opponent,
-    score
-  });
+  await Match.findByIdAndUpdate(
+    req.params.id,
+    {
+        player,
+        opponent,
+        score
+    },
+    {
+        runValidators: true
+    }
+);
 
   res.redirect("/dashboard");
 });
@@ -156,29 +227,107 @@ router.post("/edit-match/:id", requireLogin, async (req, res) => {
 
 // SEARCH
 router.get("/search", async (req, res) => {
+
     try {
+
         const q = req.query.q;
 
         const matches = await Match.find({
+
             $or: [
-                { player: { $regex: q, $options: "i" } },
-                { opponent: { $regex: q, $options: "i" } }
+
+                {
+                    player: {
+                        $regex: q,
+                        $options: "i"
+                    }
+                },
+
+                {
+                    opponent: {
+                        $regex: q,
+                        $options: "i"
+                    }
+                }
+
             ]
+
         })
-        .sort({ _id: -1 }) 
-        .populate("createdBy", "email"); 
+
+        .sort({ _id: -1 })
+
+        .populate("createdBy", "username email");
+
+
+
+        // STATISTICS
+        const totalMatches = await Match.countDocuments();
+
+        const liveMatches = await Match.countDocuments({
+            status: "live"
+        });
+
+        const finishedMatches = await Match.countDocuments({
+            status: "finished"
+        });
+
+
 
         res.render("dashboard", {
+
             matches,
+
             user: req.session.user,
+
             views: req.session.views || 0,
-            favorite: req.cookies.favoriteTournament
+
+            favorite: req.cookies.favoriteTournament,
+
+            totalMatches,
+
+            liveMatches,
+
+            finishedMatches
+
         });
 
     } catch (err) {
+
         console.log(err);
+
         res.send("Eroare la search");
+
     }
+
+});
+
+// API - toate match-urile
+router.get("/api/matches", async (req, res) => {
+
+    try {
+
+        const matches = await Match.find()
+        .populate("createdBy", "username email");
+
+        res.json(matches);
+
+    } catch(err) {
+
+        res.status(500).json({
+            message: "Eroare server"
+        });
+
+    }
+
+});
+
+router.get("/api/matches", async (req, res) => {
+
+    const matches = await Match.find()
+        .populate("createdBy", "email username");
+
+    res.json(matches);
+
 });
 
 module.exports = router;

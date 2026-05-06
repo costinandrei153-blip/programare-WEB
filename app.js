@@ -5,9 +5,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const Match = require("./models/Match");
 
-mongoose.connect("mongodb+srv://costin:parola123@cluster0.rh438aw.mongodb.net/tennisApp")
-  .then(() => console.log("MongoDB conectat"))
-  .catch(err => console.log(err));
+mongoose.connect("mongodb+srv://costin:parola123@cluster0.rh438aw.mongodb.net/tennisApp?retryWrites=true&w=majority")
+.then(() => console.log("MongoDB conectat"))
+.catch(err => console.log(err));
   
 const app = express();
 app.set("view engine", "ejs");

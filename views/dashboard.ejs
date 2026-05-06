@@ -13,25 +13,83 @@
 <div class="container">
 
 <nav>
+
   <h1>🎾 Tennis Dashboard</h1>
 
   <div>
+
+    <!-- API BUTTON -->
+    <a 
+      href="/api/matches"
+      target="_blank"
+      style="margin-right:15px;color:cyan;"
+    >
+      API
+    </a>
+
     <a href="/">Home</a>
+
     <a href="/logout">Logout</a>
+
   </div>
+
 </nav>
 
+<!-- USER INFO -->
 <div class="card">
+
   <h2>Bine ai venit <%= user.email %></h2>
+
   <p>Vizite sesiune: <%= views %></p>
+
   <p>Turneu favorit: <%= favorite %></p>
+
+  <p>
+    Rol:
+    
+    <% if(user.role === "admin") { %>
+
+      <span style="color:red;font-weight:bold;">
+        ADMIN
+      </span>
+
+    <% } else { %>
+
+      <span style="color:lime;font-weight:bold;">
+        USER
+      </span>
+
+    <% } %>
+
+  </p>
+
 </div>
 
+<!-- STATISTICS -->
 <div class="card">
+
+  <h2>Statistics</h2>
+
+  <p>Total Matches: <%= totalMatches %></p>
+
+  <p style="color:lime;">
+    Live Matches: <%= liveMatches %>
+  </p>
+
+  <p style="color:red;">
+    Finished Matches: <%= finishedMatches %>
+  </p>
+
+</div>
+
+<!-- MATCHES -->
+<div class="card">
+
   <h2>Live Matches</h2>
 
-  <!-- 🔍 SEARCH -->
+  <!-- SEARCH -->
   <form action="/search" method="GET" style="margin-bottom:15px;">
+
     <input 
       type="text" 
       name="q" 
@@ -46,50 +104,122 @@
       Search
     </button>
 
-    <a href="/dashboard" style="margin-left:10px;color:white;">Reset</a>
+    <a href="/dashboard" style="margin-left:10px;color:white;">
+      Reset
+    </a>
+
   </form>
 
   <table>
+
     <tr>
       <th>Player</th>
       <th>Opponent</th>
       <th>Score</th>
+      <th>Status</th>
       <th>Created By</th>
       <th>Actions</th>
     </tr>
 
     <% matches.forEach(match => { %>
+
     <tr>
+
       <td><%= match.player %></td>
+
       <td><%= match.opponent %></td>
+
       <td><%= match.score %></td>
-      <td><%= match.createdBy ? match.createdBy.email : "N/A" %></td>
+
+      <!-- STATUS -->
       <td>
-        <a href="/edit-match/<%= match._id %>" 
-           style="margin-right:10px;color:yellow;">
-           Edit
+
+        <% if(match.status === "live") { %>
+
+          <span style="color:lime;font-weight:bold;">
+            LIVE
+          </span>
+
+        <% } else { %>
+
+          <span style="color:red;font-weight:bold;">
+            FINISHED
+          </span>
+
+        <% } %>
+
+      </td>
+
+      <!-- CREATED BY -->
+      <td>
+
+        <% if(match.createdBy) { %>
+
+          <%= match.createdBy.username %>
+          (<%= match.createdBy.email %>)
+
+        <% } else { %>
+
+          N/A
+
+        <% } %>
+
+      </td>
+
+      <td>
+
+        <!-- VIEW -->
+        <a 
+          href="/match/<%= match._id %>" 
+          style="margin-right:10px;color:cyan;"
+        >
+          View
         </a>
 
-        <form action="/delete-match/<%= match._id %>" method="POST" style="display:inline;">
-          <button style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+        <!-- EDIT -->
+        <a 
+          href="/edit-match/<%= match._id %>" 
+          style="margin-right:10px;color:yellow;"
+        >
+          Edit
+        </a>
+
+        <!-- DELETE -->
+        <form 
+          action="/delete-match/<%= match._id %>" 
+          method="POST" 
+          style="display:inline;"
+          onsubmit="return confirm('Sigur vrei sa stergi acest match?')"
+        >
+
+          <button 
+            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;"
+          >
             Delete
           </button>
+
         </form>
+
       </td>
+
     </tr>
+
     <% }) %>
 
   </table>
+
 </div>
 
+<!-- TOP PLAYERS -->
 <div class="card">
+
   <h2>Top ATP Players</h2>
 
   <p>1. Novak Djokovic</p>
   <p>2. Carlos Alcaraz</p>
   <p>3. Jannik Sinner</p>
   <p>4. Daniil Medvedev</p>
-  <p>5. Nicu Tancu</p>
+  <p>5. Rafael Nadal</p>
 
 </div>
 

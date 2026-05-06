@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Match Details</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="container">
+
+<nav>
+  <h1>🎾 Match Details</h1>
+
+  <div>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+
+<div class="card">
+
+  <h2><%= match.player %> vs <%= match.opponent %></h2>
+
+  <p><strong>Score:</strong> <%= match.score %></p>
+
+  <p><strong>Status:</strong> <%= match.status %></p>
+
+  <p><strong>Tournament:</strong> <%= match.tournament %></p>
+
+  <p><strong>Rounds:</strong> <%= match.rounds %></p>
+
+  <p><strong>Finished:</strong> 
+    <%= match.isFinished ? "Yes" : "No" %>
+  </p>
+
+  <p><strong>Date:</strong> 
+    <%= match.matchDate.toLocaleDateString() %>
+  </p>
+
+  <p>
+    <strong>Created By:</strong>
+
+    <%= match.createdBy 
+        ? match.createdBy.username 
+        : "Unknown" %>
+  </p>
+
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
